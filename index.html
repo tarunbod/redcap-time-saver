@@ -6,9 +6,16 @@
     <title>Empty HTML File</title>
 </head>
 <body>
+  <p>VARIABLE NAME</p>
   <input id="variableInput"/>
-  <input type="textarea" id="choicesText"/>
-  <input id="andOrOrInput"/>
+  <p>CHOICES</p>
+  <textarea id="choicesText"></textarea>
+  <p>ANY (1) or ALL (2)</p>
+  <select id="andOrOrInput">
+    <option value="and">AND</option>
+    <option value="or">OR</option>
+  </select><br><br>
+  <button onclick="doIt()">Generate</button>
   <pre id="outputElem">
   </pre>
   <script>
@@ -16,7 +23,6 @@
       const varName = variableInput.value;
       const choices = choicesText.value;
       let andOrOr = andOrOrInput.value;
-      andOrOr = andOrOr === '1' ? 'or' : 'and';
 
       const choiceLines = choices.split('\n');
       console.log(choiceLines);
@@ -31,7 +37,7 @@
           output += ` ${andOrOr} `;
         }
       }
-      outputElem.value = output;
+      outputElem.innerText = output;
     }
   </script>
 </body>
