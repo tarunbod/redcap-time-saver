@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empty HTML File</title>
+</head>
+<body>
+  <input id="variableInput"/>
+  <input type="textarea" id="choicesText"/>
+  <input id="andOrOrInput"/>
+  <pre id="outputElem">
+  </pre>
+  <script>
+    function doIt() {
+      const varName = variableInput.value;
+      const choices = choicesText.value;
+      let andOrOr = andOrOrInput.value;
+      andOrOr = andOrOr === '1' ? 'or' : 'and';
+
+      const choiceLines = choices.split('\n');
+      console.log(choiceLines);
+      let output = "";
+      for (let i = 0; i < choiceLines.length; i++) {
+        const choice = choiceLines[i].replaceAll('\r', '');
+        console.log(choice);
+        const [id, _] = choice.split(',');
+
+        output += `[${varName}] = "${id}"`;
+        if (i != choiceLines.length - 1) {
+          output += ` ${andOrOr} `;
+        }
+      }
+      outputElem.value = output;
+    }
+  </script>
+</body>
+</html>
+
